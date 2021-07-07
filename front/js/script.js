@@ -10,7 +10,7 @@ $(() => {
                 let currencies ="<li>Devises <ul>"
 
                 for (j in country.currencies) {
-                    currencies += `<li>${country.currencies[j].symbol} (${country.currencies[j].name})</li>`
+                    currencies += `<li>${(typeof country.currencies[j].symbol === "string" ? country.currencies[j].symbol : "N/C")} (${country.currencies[j].name})</li>`
                 }
 
                 currencies +="</ul></li>"

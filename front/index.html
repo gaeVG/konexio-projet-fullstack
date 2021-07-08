@@ -16,48 +16,58 @@
 
     <body>
         <header>
+            <h1 class="px-3 py-3">API Countries</h1>
             <nav class="container-fluid">
-                <div class="pt-3">
-                    <form class="form">
 
-                            <div class="input-group mb-3">
-                                <button id="country" class="btn btn-outline-success" type="button">Pays</button>
-                                <button id="capital" class="btn btn-outline-primary" type="button">Capitale</button>
-                                <input id="userSearch" type="text" class="form-control" placeholder="Pays / Capitale" aria-label="">
+                <div class="row pt-3">
+                    
+                    <div class="col-12 col-lg-4 mx-auto my-3">
+                        <div class="input-group">
+                            <button id="country" class="btn btn-outline-success" type="button">Pays</button>
+                            <button id="capital" class="btn btn-outline-primary" type="button">Capitale</button>
+                            <input id="userSearch" type="text" class="form-control" placeholder="Pays / Capitale" aria-label="">
 
-                                <button id="region" class="btn btn-outline-warning dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Région</button>
+                            <button id="region" class="btn btn-outline-warning dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Région
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="#" data="Europe">Europe</a></li>
+                                <li><a class="dropdown-item" href="#" data="Americas">Amériques</a></li>
+                                <li><a class="dropdown-item" href="#" data="Asia">Asie</a></li>
+                                <li><a class="dropdown-item" href="#" data="Africa">Afrique</a></li>
+                                <li><a class="dropdown-item" href="#" data="Oceania">Océanie</a></li>
+                                <li><a class="dropdown-item" href="#" data="Polar">Pôles</a></li>
                                 
-                                <ul class="dropdown-menu dropdown-menu-end">
-                                    <li><a class="dropdown-item" href="#" data="Europe">Europe</a></li>
-                                    <li><a class="dropdown-item" href="#" data="Americas">Amériques</a></li>
-                                    <li><a class="dropdown-item" href="#" data="Asia">Asie</a></li>
-                                    <li><a class="dropdown-item" href="#" data="Africa">Afrique</a></li>
-                                    <li><a class="dropdown-item" href="#" data="Oceania">Océanie</a></li>
-                                    <li><a class="dropdown-item" href="#" data="Polar">Pôles</a></li>
-                                    
-                                </ul>
+                            </ul>
+                        </div>
+                    </div>
 
-                                <button id="search" type="button" class="btn btn-primary ms-1">
-                                    <i class="fas fa-search"></i>Rechercher
-                                </button>
-                                <button id="all" type="button" class="btn btn-success">
-                                    <i class="fas fa-search"></i>Lister les pays
-                                </button>
-                                <button id="reload" type="button" class="btn btn-danger">
-                                    <i class="fas fa-search"></i>Reset
-                                </button>
+                    <div class="col-md-6 col-lg-5 my-3">
 
-                            </div>
+                        <button id="search" type="button" class="btn btn-primary ms-1">
+                            <i class="fas fa-search"></i>Rechercher
+                        </button>
 
-                            <small id="helpText" class="form-text text-muted"></small>
-                    </form>
+                        <button id="all" type="button" class="btn btn-success">
+                            <i class="fas fa-search"></i>Lister les pays
+                        </button>
+
+                        <button id="reload" type="button" class="btn btn-danger">
+                            <i class="fas fa-search"></i>Reset
+                        </button>
+                    </div>
+
+                    <div class="col-12 col-lg-5 mx-auto my-2 text-center">
+                        <small id="helpText" class="form-text text-muted"></small>
+                    </div>
+
                 </div>
             </nav>
         </header>
 
         <main class="container-fluid">
 
-            <div id="countries" class="row">
+            <div id="countries" class="row justify-content-evenly">
 
 
             </div>
@@ -65,7 +75,6 @@
 
         <script src="js/jquery-3.6.0.min.js"></script>
         <script src="js/bootstrap.bundle.min.js"></script>
-        
         <script src="js/script.js"></script>
     </body>
 </html>

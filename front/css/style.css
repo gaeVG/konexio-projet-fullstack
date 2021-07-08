@@ -3,47 +3,38 @@ body {
     color: #eee
 }
 
-nav {
-    background-color: #202020;
-    height: 7em;
-    
-}
 
-nav > div {
-    margin: 0 auto;
-    width: 50em;
-}
-
-main {
-    margin: 0 auto;
+header {
+    background-color: #202020;    
 }
 
 #countries {
-    justify-content: space-evenly;
     margin: 0 auto;
-    padding: 1em;
+    padding: 1em 0;
 }
 
 .card {
-    background-color: #202020;
-    margin: 1em 0.00051em;
-    padding: 2em 1em;
-    box-shadow: 1em 0.4em 0.8em rgba(0, 0, 0, 0.4);
+    margin: 1em auto;
+    padding: 2em 2em;
     width: 30em;
+    background-color: #202020;
+    box-shadow: 1em 0.4em 0.8em rgba(0, 0, 0, 0.4);
 }
 
 .card:hover {
-    box-shadow: 1em 0.4em 0.8em rgba(255,255,255, 0.4);
+    background-color: #161616;
 }
 
 .card ul {
     list-style: none;
-    display: flex;
-    flex-wrap: wrap;
 }
 
 .card ul li {
     width: 50%;
+}
+
+h6 {
+    color: #808080;
 }
 
 .full {
@@ -55,8 +46,17 @@ main {
     box-shadow: 1em 0.4em 0.8em rgba(0, 0, 0, 0.4);
 }
 
+#helpText {
+    margin-bottom: 1em;
+}
+
 #mapid {
     height: 300px;
     width: 100%;
 }
 
+@media screen and (max-width: 992px) {
+    nav > div {
+        flex-direction: column-reverse;
+    }
+}

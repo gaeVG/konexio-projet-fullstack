@@ -3,13 +3,6 @@ $(() => {
     let helpText = $("#helpText")
     let regionSelected, typeResearch
 
-    function suffixNumber(number) {
-        if (number < 1000) return "" + number;
-        let exp =Math.log(number) / Math.log(1000);
-
-        return `${Math.ceil(number / Math.pow(1000, exp))}${"kMGTPE".charAt(exp -1)}`
-    }
-
     function countryTemplate(data, full) {
         
         if (full) {
@@ -17,34 +10,58 @@ $(() => {
             
             <h3>${data.name}</h3>
             <h6>↪ ${data.nativeName}</h6>
-
-            
-                <ul>
-                    <li>🎆 ${data.capital ? data.capital : "N/C"}</li>
-                    <li>👪 ${data.population} habs.</li>
-                    <li>🌍 ${data.region}</li>
-                </ul>
-
-                <div id="mapid"></div>
+            <ul>
+                <li>🎆 ${data.capital ? data.capital : "N/C"}</li>
+                <li>👪 ${data.population} ${suffixDemonym(data.demonym)}.</li>
+                <li>🌍 ${data.region}</li>
+            </ul>
+            <div id="mapid"></div>
             </div>
             `
 
         } else {
             return `<div class="col-12 col-lg-6 col-xl-4 card" id="${data.name}">
             
-            <h3>${data.name}</h3>
-            <h6>↪ ${data.nativeName}</h6>
+                <h3>${data.name}</h3>
+                <h6 class="mb-4">↪ ${data.nativeName}</h6>
 
-            
-                <ul>
-                    <li>🎆 ${data.capital ? data.capital : "N/C"}</li>
-                    <li>👪 ${suffixNumber(data.population)} habs.</li>
-                    <li>🌍 ${data.region}</li>
-                </ul></div>
-            `
+                    <ul class="d-flex justify-content-around flex-wrap">
+                        <li>🎆 ${data.capital ? data.capital : "N/C"}</li>
+                        <li>👪 +${suffixNumber(data.population)} ${suffixDemonym(data.demonym)}</li>
+                        <li>🌍 ${data.region}</li>
+                        <li>🗨 Langues parlées : ${data.languages.length}</li>
+                    </ul>
+            </div>`
         }
     }
+    function fetchAll() {
 
+        countries.html(`<div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>`)
+        
+        let request = "http://127.0.0.1:3600/"
+
+        request += regionSelected !== undefined ?  `region/${regionSelected}` : "all";
+
+        setTimeout(() => {
+            $.ajax(request)
+                .done(data => {
+                    countries.empty()
+                    
+                    for (let i = 0; i < data.length; i++) {
+                        countries.append(countryTemplate(data[i]))
+                    }
+                })
+                .fail(() => {
+                    if ($("#userSearch").hasClass("is-valid")) $("#userSearch").removeClass("is-valid")
+                    $("#userSearch").addClass("is-invalid")
+
+                    countries.empty()
+                    helpText.html("Impossible de trouver un résultat")
+                })
+        }, 500)
+    }
     function search(s, user) {
         let userInput =$("userSearch")
         let t
@@ -133,34 +150,18 @@ $(() => {
             })
         }, 500)
     }
+    function suffixDemonym(demonym) {
+        if (demonym[0] === undefined) return "N/C"
 
-    function fetchAll() {
+        let vowel = ['a', 'e', 'i', 'o', 'u'].indexOf(demonym[0].toLowerCase()) !== -1
 
-        countries.html(`<div class="spinner-border" role="status">
-            <span class="visually-hidden">Loading...</span>
-        </div>`)
-        
-        let request = "http://127.0.0.1:3600/"
+        return vowel ? `d'${demonym}` : `de ${demonym}`
+    }
+    function suffixNumber(number) {
+        if (number < 1000) return "" + number;
+        let exp =Math.log(number) / Math.log(1000);
 
-        request += regionSelected !== undefined ?  `region/${regionSelected}` : "all";
-
-        setTimeout(() => {
-            $.ajax(request)
-                .done(data => {
-                    countries.empty()
-                    
-                    for (let i = 0; i < data.length; i++) {
-                        countries.append(countryTemplate(data[i]))
-                    }
-                })
-                .fail(() => {
-                    if ($("#userSearch").hasClass("is-valid")) $("#userSearch").removeClass("is-valid")
-                    $("#userSearch").addClass("is-invalid")
-
-                    countries.empty()
-                    helpText.html("Impossible de trouver un résultat")
-                })
-        }, 500)
+        return `${Math.ceil(number / Math.pow(1000, exp))}${"kMGTPE".charAt(exp -1)}`
     }
 
     document.addEventListener('click', event => {

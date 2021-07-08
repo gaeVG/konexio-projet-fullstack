@@ -4,47 +4,68 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Countries API</title>
-        <script src="js/bootstrap.bundle.min.js"></script>
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
         <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+   integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+   crossorigin=""/>
+        <link rel="stylesheet" href="css/style.css">
     </head>
 
     <body>
         <header>
-            <nav class="container">
-                &nbsp;
+            <nav class="container-fluid">
+                <div class="pt-3">
+                    <form class="form">
+                        <div>
+                            <div class="input-group mb-3">
+                                <button id="country" class="btn btn-outline-success" type="button">Pays</button>
+                                <button id="capital" class="btn btn-outline-primary" type="button">Capitale</button>
+                                <input id="userSearch" type="text" class="form-control" placeholder="Pays / Capitale" aria-label="">
+
+                                <button id="region" class="btn btn-outline-warning dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Région</button>
+                                
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><a class="dropdown-item" href="#" data="Europe">Europe</a></li>
+                                    <li><a class="dropdown-item" href="#" data="Americas">Amériques</a></li>
+                                    <li><a class="dropdown-item" href="#" data="Asia">Asie</a></li>
+                                    <li><a class="dropdown-item" href="#" data="Africa">Afrique</a></li>
+                                    <li><a class="dropdown-item" href="#" data="Oceania">Océanie</a></li>
+                                    <li><a class="dropdown-item" href="#" data="Polar">Pôles</a></li>
+                                    
+                                </ul>
+
+                                <button id="search" type="button" class="btn btn-primary ms-1">
+                                    <i class="fas fa-search"></i>Rechercher
+                                </button>
+                                <button id="all" type="button" class="btn btn-success">
+                                    <i class="fas fa-search"></i>Lister les pays
+                                </button>
+                                <button id="reload" type="button" class="btn btn-danger">
+                                    <i class="fas fa-search"></i>Reset
+                                </button>
+
+                            </div>
+                            <small id="helpText" class="form-text text-muted"></small>
+                
+                        </div>
+                    </form>
+                </div>
             </nav>
         </header>
-        <main class="container">
 
-            <div class="input-group mb-2">
-                <div class="form-outline">
-                  <input type="search" id="userSearch" class="form-control" />
-                  
-                </div>
-                
-                <button type="button" class="btn btn-primary">
-                    <i class="fas fa-search"></i>Rechercher
-                </button>
-            </div>
-                
-            <div id="countryResult" class="mb-2" >
-                <small id="helpText" class="text-muted"></small>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="country">
-                <label class="form-check-label" for="inlineRadio1">Pays</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="capital">
-                <label class="form-check-label" for="inlineRadio2">Capitale</label>
-                
-            </div>
+        <main class="container-fluid">
 
-              
-            
-            <div id="country" class="mt-5"></div>
+            <div id="countries" class="row">
+
+
+            </div>
         </main>
+
         <script src="js/jquery-3.6.0.min.js"></script>
+        <script src="js/bootstrap.bundle.min.js"></script>
         
         <script src="js/script.js"></script>
     </body>

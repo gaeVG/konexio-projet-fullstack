@@ -1,0 +1,64 @@
+body {
+    background-color: #303030;
+    color: #eee
+}
+
+nav {
+    background-color: #202020;
+    height: 7em;
+    
+}
+
+nav > div {
+    margin: 0 auto;
+    width: 50em;
+}
+
+main {
+    margin: 0 auto;
+}
+
+#countries {
+    padding: 5em;
+}
+
+.card {
+    background-color: #202020;
+    margin: 1em;
+    padding: 2em;
+    box-shadow: 1em 0.4em 0.8em rgba(0, 0, 0, 0.4);
+    width: 30%;
+}
+
+.card:hover {
+    box-shadow: 1em 0.4em 0.8em rgba(255,255,255, 0.4);
+}
+
+.card ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card ul li {
+    width: 50%;
+}
+
+.full {
+    width: 80%;
+    height: 32em;
+    margin: 1em auto;
+    padding: 2em;
+    background-color: #202020;
+    box-shadow: 1em 0.4em 0.8em rgba(0, 0, 0, 0.4);
+}
+
+#mapid {
+    height: 300px;
+    width: 100%;
+}
+
+
+form {
+    position: fixed;
+}

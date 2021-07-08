@@ -19,15 +19,17 @@ main {
 }
 
 #countries {
-    padding: 5em;
+    justify-content: space-evenly;
+    margin: 0 auto;
+    padding: 1em;
 }
 
 .card {
     background-color: #202020;
-    margin: 1em;
-    padding: 2em;
+    margin: 1em 0.00051em;
+    padding: 2em 1em;
     box-shadow: 1em 0.4em 0.8em rgba(0, 0, 0, 0.4);
-    width: 30%;
+    width: 30em;
 }
 
 .card:hover {
@@ -58,7 +60,3 @@ main {
     width: 100%;
 }
 
-
-form {
-    position: fixed;
-}

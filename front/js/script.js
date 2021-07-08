@@ -3,6 +3,13 @@ $(() => {
     let helpText = $("#helpText")
     let regionSelected, typeResearch
 
+    function suffixNumber(number) {
+        if (number < 1000) return "" + number;
+        let exp =Math.log(number) / Math.log(1000);
+
+        return `${Math.ceil(number / Math.pow(1000, exp))}${"kMGTPE".charAt(exp -1)}`
+    }
+
     function countryTemplate(data, full) {
         
         if (full) {
@@ -13,7 +20,7 @@ $(() => {
 
             
                 <ul>
-                    <li>🎆 ${data.capital}</li>
+                    <li>🎆 ${data.capital ? data.capital : "N/C"}</li>
                     <li>👪 ${data.population} habs.</li>
                     <li>🌍 ${data.region}</li>
                 </ul>
@@ -30,8 +37,8 @@ $(() => {
 
             
                 <ul>
-                    <li>🎆 ${data.capital}</li>
-                    <li>👪 ${data.population} habs.</li>
+                    <li>🎆 ${data.capital ? data.capital : "N/C"}</li>
+                    <li>👪 ${suffixNumber(data.population)} habs.</li>
                     <li>🌍 ${data.region}</li>
                 </ul></div>
             `
@@ -67,6 +74,7 @@ $(() => {
             }
 
             t =typeResearch
+
         } else {
             t ="country"
         }
@@ -80,7 +88,7 @@ $(() => {
         
             .done(data => {
 
-                if (regionSelected !== undefined && data.region !== regionSelected) {
+                if (user && regionSelected !== undefined && data.region !== regionSelected) {
                     if ($("#userSearch").hasClass("is-valid")) $("#userSearch").removeClass("is-valid")
                     $("#userSearch").addClass("is-invalid")
 
@@ -98,17 +106,23 @@ $(() => {
 
                 countries.html(countryTemplate(data, true))
                 
-                var mymap = L.map('mapid').setView([data.latlng[0], data.latlng[1]], 13);
+                var map = L.map('mapid').setView([data.latlng[0], data.latlng[1]], 13);
 
                 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
                     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-                    maxZoom: 6,
+                    maxZoom: 16,
                     id: 'mapbox/streets-v11',
                     tileSize: 512,
                     zoomOffset: -1,
                     accessToken: 'pk.eyJ1IjoiZ2Fldm1iIiwiYSI6ImNrcXV5MHpxNjA2bngyd3BjZ3Exc29hZGwifQ.1OYZ7D8eUSqWoObrXn5OvQ'
-                }).addTo(mymap);
+                }).addTo(map);
 
+                
+                let infos = L.popup()
+                infos
+                    .setLatLng([data.latlng[0], data.latlng[1]])
+                    .setContent(`🔰 Capitale: ${data.capital}`)
+                    .openOn(map);
             })
             .fail(() => {
                 if (userInput.hasClass("is-valid")) userInput.removeClass("is-valid")

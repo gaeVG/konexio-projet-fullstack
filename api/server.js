@@ -2,7 +2,7 @@ const cors = require("cors")
 const express =require("express")
 const app = express()
 const data =require("../data/countriesData.json")
-const port = 3600
+const port = 3636
 
 app.use(cors())
 

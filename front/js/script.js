@@ -40,27 +40,25 @@ $(() => {
             <span class="visually-hidden">Loading...</span>
         </div>`)
         
-        let request = "http://127.0.0.1:3600/"
+        let request = "http://82.64.247.20:3636/"
 
         request += regionSelected !== undefined ?  `region/${regionSelected}` : "all";
 
-        setTimeout(() => {
-            $.ajax(request)
-                .done(data => {
-                    countries.empty()
-                    
-                    for (let i = 0; i < data.length; i++) {
-                        countries.append(countryTemplate(data[i]))
-                    }
-                })
-                .fail(() => {
-                    if ($("#userSearch").hasClass("is-valid")) $("#userSearch").removeClass("is-valid")
-                    $("#userSearch").addClass("is-invalid")
+        $.ajax(request)
+            .done(data => {
+                countries.empty()
+                
+                for (let i = 0; i < data.length; i++) {
+                    countries.append(countryTemplate(data[i]))
+                }
+            })
+            .fail(() => {
+                if ($("#userSearch").hasClass("is-valid")) $("#userSearch").removeClass("is-valid")
+                $("#userSearch").addClass("is-invalid")
 
-                    countries.empty()
-                    helpText.html("Impossible de trouver un résultat")
-                })
-        }, 500)
+                countries.empty()
+                helpText.html("Impossible de trouver un résultat")
+            })
     }
     function search(s, user) {
         let userInput =$("userSearch")
@@ -100,8 +98,7 @@ $(() => {
             <span class="visually-hidden">Chargement...</span>
         </div>`)
 
-        setTimeout(() => {
-            $.ajax(`http://127.0.0.1:3600/${t}/${s}`)
+            $.ajax(`http://82.64.247.20:3636/${t}/${s}`)
         
             .done(data => {
 
@@ -148,7 +145,7 @@ $(() => {
                 helpText.html("🛑 Impossible de trouver un résultat...")
                 fetchAll()
             })
-        }, 500)
+        
     }
     function suffixDemonym(demonym) {
         if (demonym[0] === undefined) return "N/C"

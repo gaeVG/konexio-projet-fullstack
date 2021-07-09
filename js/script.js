@@ -40,7 +40,7 @@ $(() => {
             <span class="visually-hidden">Loading...</span>
         </div>`)
         
-        let request = "http://82.64.247.20:3636/"
+        let request = "http://localhost:3636/"
 
         request += regionSelected !== undefined ?  `region/${regionSelected}` : "all";
 
@@ -98,7 +98,7 @@ $(() => {
             <span class="visually-hidden">Chargement...</span>
         </div>`)
 
-            $.ajax(`http://82.64.247.20:3636/${t}/${s}`)
+            $.ajax(`http://localhost:3636/${t}/${s}`)
         
             .done(data => {
 
